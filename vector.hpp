@@ -38,10 +38,11 @@ public:
     }
     
     Vector (const Vector& kopieren){ // Kopierkonstruktor
-        T* values_new = new T*[kopieren.max_sz];
+        sz =kopieren.sz;
+        max_sz = kopieren.max_sz;
+        T* values_new = new T[kopieren.max_sz];
         for(size_t i{0}; i<max_sz; i++)
             values_new[i] = kopieren[i];
-        delete[] values;
         values = values_new;
     }
     
@@ -121,7 +122,25 @@ public:
         return max_sz;
     }
     
-    //friend std::ostream& operator<<(std::ostream& o,const Vector&);
+    std::ostream& operator<<(std::ostream& o){
+        
+            o << "[";
+            bool first = true;
+            for(std::size_t i{0}; i<sz; i++){
+                if(first){
+                    first = false;
+                    o << values[i];
+                }
+                else{
+                    o << ", " << values[i];
+                }
+            }
+            o << "]";
+            return o;
+        }
+    
+    
+    
     
     
     
@@ -148,21 +167,6 @@ public:
     }*/
     
 };
-/*template <class T>
-std::ostream& operator<<(std::ostream& o,const Vector<T>& x) {
-    o << "[";
-    bool first = true;
-    for(std::size_t i{0}; i<x.sz; i++){
-        if(first){
-            first = false;
-            o << x.values[i];
-        }
-        else{
-            o << ", " << x.values[i];
-        }
-    }
-    o << "]";
-    return o;
-}*/
+
 
 #endif
