@@ -5,6 +5,7 @@
 #include <string>
 #include <stdexcept>
 #include <initializer_list>
+#include <algorithm>
 
 
 
@@ -47,6 +48,15 @@ public:
     }
     
     //Funktionen
+    
+    Vector& operator=(Vector v){
+        std::swap(sz, v.sz);
+        std::swap(max_sz, v.max_sz);
+        std::swap(values, v.values);
+        return *this;
+        
+    }
+    
     size_type size() const{
         return sz;
     }
@@ -122,51 +132,31 @@ public:
         return max_sz;
     }
     
-    std::ostream& operator<<(std::ostream& o){
+    friend std::ostream& operator<<(std::ostream& o, const Vector x);
         
-            o << "[";
-            bool first = true;
-            for(std::size_t i{0}; i<sz; i++){
-                if(first){
-                    first = false;
-                    o << values[i];
-                }
-                else{
-                    o << ", " << values[i];
-                }
-            }
-            o << "]";
-            return o;
-        }
-    
-    
-    
-    
-    
     
     
 
-    /*void reserve(size_type n){
-        if(sz>=max_sz) return;
-        pointer next{new value_type[n]}; // ändern anfänger ding
-        for(std::size_t i{0};i<sz;i++)
-            next[i] = values[i];
-        delte values;
-        values = next;
-    }
-
-    void clear(){
-        
-    }
-    Vector& operator=(const Vektor v){ // Vektor v ist kopie daher okay
-        std::swap(sz, v.sz);
-        std::swap(max_sz, v.max_sz);
-        std::swap(values, v.values);
-        return *this;
-        
-    }*/
+    
+    
     
 };
+template <class T>
+std::ostream& operator<<(std::ostream& o, const Vector<T> x){
+o << "[";
+bool first = true;
+for(std::size_t i{0}; i<x.sz; i++){
+    if(first){
+        first = false;
+        o << x.values[i];
+    }
+    else{
+        o << ", " << x.values[i];
+    }
+}
+o << "]";
+return o;
+}
 
 
 #endif
