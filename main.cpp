@@ -54,7 +54,8 @@ cout <<  "konst 2 size = 10==" << konst2.size()<<"\n";
 cout << "\n" << "Test pop_back" << "\n";
 
 //cout << " Test print";
-//cout << leer;
+cout << leer;
+cout << konst;
     
 
     

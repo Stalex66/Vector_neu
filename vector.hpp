@@ -132,7 +132,7 @@ public:
         return max_sz;
     }
     
-    friend std::ostream& operator<<(std::ostream& o, const Vector x);
+    friend std::ostream& std::operator<<(std::ostream& o, const Vector x);
         
     
     
@@ -141,8 +141,9 @@ public:
     
     
 };
+
 template <class T>
-std::ostream& operator<<(std::ostream& o, const Vector<T> x){
+std::ostream& std::operator<<(std::ostream& o, const Vector<T> x){
 o << "[";
 bool first = true;
 for(std::size_t i{0}; i<x.sz; i++){
